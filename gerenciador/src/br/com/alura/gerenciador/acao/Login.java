@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.com.alura.gerenciador.modelo.Banco;
 import br.com.alura.gerenciador.modelo.Usuario;
@@ -21,7 +22,13 @@ public class Login implements Acao {
 		Banco banco = new Banco();
 		Usuario usuario = banco.existeUsuario(login,senha); //procura o usuario e se o achar, retorna usuario
 		
-		if(usuario!=null) return "redirect:entrada?acao=ListaEmpresas"; // apenas aqueles que tem login conseguem ver a lista
+		// achou o usuario, então ele fez login e existe
+		if(usuario!=null) {
+			HttpSession sessao = request.getSession();
+			sessao.setAttribute("usuarioLogado", usuario); // grava o usuario na sessao pra poder usa-lo em outros lugares
+			return "redirect:entrada?acao=ListaEmpresas"; // apenas aqueles que tem login conseguem ver a lista
+			
+		}
 		return "redirect:entrada?acao=LoginForm"; // quem nao tem, fica na parte de login
 		
 		
