@@ -20,23 +20,29 @@ public class UnicaEntradaServlet extends HttpServlet {
 
 		String paramAcao = request.getParameter("acao"); // ex: entrada?acao=RemoveEmpresa
 		
-		String nomeDaClasse = "br.com.alura.gerenciador.acao." + paramAcao;
+		String nomeDaClasse = "br.com.alura.gerenciador.acao." + paramAcao; // nome da classe da ação
 		
 		String nome;
-		try {
-			Class classe = Class.forName(nomeDaClasse);//carrega a classe com o nome 
-			Acao acao = (Acao) classe.newInstance();
-			nome = acao.executa(request,response);
+		try { // código abaixo é uma forma "geral" de instanciar qualquer classe pedida
+			Class classe = Class.forName(nomeDaClasse); // carrega a classe desse nome 
+			Acao acao = (Acao) classe.newInstance(); // instancia a classe em uma interface Acao (coloco ela em interface Acao pois todos os outros controllers implementam ele; ele é o "Pai"; mais geral)
+			nome = acao.executa(request,response); // chama a funcao executa; retorna uma string
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			throw new ServletException(e);
 		}
 		
+		// separa a string no : devolvendo um array de 2 posições
+		// EX: forward:listaEmpresas.jsp. tipoEEndereco[0]=forward, tipoEEndereco[1]=listaEmpresas.jsp
+		
+		// forward e redirect são comandos diferentes.
+		/* O redirect envia uma requisição para o browser colocando um header de redirecionamento, ou seja, o processamento da página termina e todos os dados da requisição 
+		  se perdem. O forward é um redirecionamento no server aproveitando-se os dados da requisição atual */
 		String[] tipoEEndereco = nome.split(":");
-		if(tipoEEndereco[0].equals("forward")) {
-			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/" + tipoEEndereco[1]);
+		if(tipoEEndereco[0].equals("forward")) { 
+			RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/view/" + tipoEEndereco[1]); // chama a view
 			rd.forward(request, response);
 		} else {
-			response.sendRedirect(tipoEEndereco[1]);
+			response.sendRedirect(tipoEEndereco[1]); // chama a view
 		}
 		
 		

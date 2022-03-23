@@ -11,7 +11,7 @@
 <title>Java Standard Taglib</title>
 </head>
 <body>
-
+	<!-- atributo instanciado em NovaEmpresa -->
 	<c:if test="${not empty empresa}">
 		Empresa ${ empresa } cadastrada com sucesso!
 	</c:if>

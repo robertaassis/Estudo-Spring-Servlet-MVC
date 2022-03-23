@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 public class NovaEmpresaForm  implements Acao {
 
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// pra nao precisar acessar formNovaEmpresa.jsp, a pessoa so tem que colocar como entrada?acao=NovaEmpresaForm
+		/* não é possivel acessar formNovaEmpresa.jsp direto pois fica dentro de WEB-INF/view e o tomCat nao consegue ler direto essa pasta, 
+		  a pessoa é obrigada a colocar entrada?acao=NovaEmpresaForm, forçando usar o controller pois os JSP dependem das ações dos controllers */
 		// redireciona para o formulario
 		return "forward:formNovaEmpresa.jsp";
 	}
