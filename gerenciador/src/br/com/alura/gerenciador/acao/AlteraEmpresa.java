@@ -23,6 +23,7 @@ public class AlteraEmpresa  implements Acao{
 		
 		System.out.println("acao altera empresa " + id);
 		
+		// dataAbertura precisa ser instanciado antes, se não mostra como se ele não existisse, pois ele foi instanciado so no try/catch
 		Date dataAbertura = null;
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

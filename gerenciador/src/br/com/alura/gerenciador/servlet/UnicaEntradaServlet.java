@@ -18,7 +18,7 @@ public class UnicaEntradaServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		String paramAcao = request.getParameter("acao");
+		String paramAcao = request.getParameter("acao"); // ex: entrada?acao=RemoveEmpresa
 		
 		String nomeDaClasse = "br.com.alura.gerenciador.acao." + paramAcao;
 		
@@ -39,6 +39,8 @@ public class UnicaEntradaServlet extends HttpServlet {
 			response.sendRedirect(tipoEEndereco[1]);
 		}
 		
+		
+		// Muito trabalho
 		
 		//paramAcao.executa(req,res)
 		

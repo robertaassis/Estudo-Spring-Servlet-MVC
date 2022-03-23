@@ -13,7 +13,7 @@
 	
 		Nome: <input type="text" name="nome"  />
 		Data Abertura: <input type="text" name="data"  />
-		
+	 	<!-- chama acao=NovaEmpresa pra cadastrar; redireciona pra cadastrar a empresa -->
 		<input type="hidden" name="acao" value="NovaEmpresa">
 	
 		<input type="submit" />

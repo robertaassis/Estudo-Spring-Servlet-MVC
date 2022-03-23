@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 public class NovaEmpresaForm  implements Acao {
 
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// pra nao precisar acessar formNovaEmpresa.jsp, a pessoa so tem que colocar como entrada?acao=NovaEmpresaForm
+		// redireciona para o formulario
 		return "forward:formNovaEmpresa.jsp";
 	}
 }

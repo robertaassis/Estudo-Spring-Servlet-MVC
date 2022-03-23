@@ -24,7 +24,7 @@ public class NovaEmpresa  implements Acao {
 		Date dataAbertura = null;
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			dataAbertura = sdf.parse(paramDataEmpresa);
+			dataAbertura = sdf.parse(paramDataEmpresa); // casting a data para dd/MM/yyyy
 		} catch (ParseException e) {
 			throw new ServletException(e);
 		}
