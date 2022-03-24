@@ -15,7 +15,7 @@ public class ListaEmpresas implements Acao{
 	
 	public String executa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	
+		
 		
 		System.out.println("listando empresas");
 		
@@ -24,8 +24,9 @@ public class ListaEmpresas implements Acao{
 		
 		request.setAttribute("empresas", lista);
 		
+		
 		// devolve essa string
-		return "forward:listaEmpresas.jsp";
+		return "forward:listaEmpresas.jsp";  
 	}
 
 }

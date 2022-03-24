@@ -18,7 +18,7 @@ public class Login implements Acao {
 		// implementação para usuario; formLogin é redirecionado pra ca
 		String login = request.getParameter("login");
 		String senha = request.getParameter("senha");
-		
+		 
 		Banco banco = new Banco();
 		Usuario usuario = banco.existeUsuario(login,senha); //procura o usuario e se o achar, retorna usuario
 		

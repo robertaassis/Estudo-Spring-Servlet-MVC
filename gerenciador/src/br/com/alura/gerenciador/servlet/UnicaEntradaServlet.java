@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import br.com.alura.gerenciador.acao.Acao;
 
 
-@WebServlet("/entrada")
+// @WebServlet("/entrada") - CONFIGURADO NO WEB.XML
 public class UnicaEntradaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -21,17 +21,25 @@ public class UnicaEntradaServlet extends HttpServlet {
 		
 		String paramAcao = request.getParameter("acao"); // ex: entrada?acao=RemoveEmpresa
 		
+		
+		// pedaço de codigo abaixo esta no autorizacaofilter pois ele que filtrará se poderemos entrar ou nao
+		
 		// nao permite acessar as paginas sem ter feito login; puxa do session pra saber se tem algum objeto Usuario logado
-		HttpSession sessao = request.getSession();
-		boolean usuarioNaoEstaLogado = (sessao.getAttribute("usuarioLogado")==null); // se nao tiver logado, retorna true
-		boolean ehUmaAcaoProtegida = !(paramAcao.equals("Login") ||  paramAcao.equals("LoginForm")); // alguns lugares nao vao precisar estar logado, logo, aqueles que precisarem que ele esteja logado, precisa ehUmaAcaoProtegida ser setado a true
-		// apenas as paginas login e loginForm nao precisam estar logado, o resto precisa, logo se for uma delas, ehumaAcaoProtegida vai receber !true=false, entao n é protegida, logo nao precisa fazer login
-		
-		
-		if(ehUmaAcaoProtegida && usuarioNaoEstaLogado) {
-			response.sendRedirect("entrada?acao=LoginForm");
-			return;
-		}
+		/*
+		 * HttpSession sessao = request.getSession(); boolean usuarioNaoEstaLogado =
+		 * (sessao.getAttribute("usuarioLogado")==null); // se nao tiver logado, retorna
+		 * true boolean ehUmaAcaoProtegida = !(paramAcao.equals("Login") ||
+		 * paramAcao.equals("LoginForm")); // alguns lugares nao vao precisar estar
+		 * logado, logo, aqueles que precisarem que ele esteja logado, precisa
+		 * ehUmaAcaoProtegida ser setado a true // apenas as paginas login e loginForm
+		 * nao precisam estar logado, o resto precisa, logo se for uma delas,
+		 * ehumaAcaoProtegida vai receber !true=false, entao n é protegida, logo nao
+		 * precisa fazer login
+		 * 
+		 * 
+		 * if(ehUmaAcaoProtegida && usuarioNaoEstaLogado) {
+		 * response.sendRedirect("entrada?acao=LoginForm"); return; }
+		 */
 				
 		
 		String nomeDaClasse = "br.com.alura.gerenciador.acao." + paramAcao; // nome da classe da ação
