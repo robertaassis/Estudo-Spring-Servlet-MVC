@@ -21,6 +21,18 @@ import br.com.alura.gerenciador.acao.Acao;
 @WebFilter("/ControladorFilter")
 public class ControladorFilter extends HttpFilter implements Filter {
   
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		// TODO Auto-generated method stub
+		super.init();
+	}
+	
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		super.destroy();
+	}
+	
 	public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
 		
 		HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -40,7 +52,7 @@ public class ControladorFilter extends HttpFilter implements Filter {
 		}
 		
 		
-		// nao precisa dele pq é o ultimo filter
+		// nao precisa dele pq é o ultimo filter; chain.doFilter mantem a "corrente"/sequencia dos filter
 		//chain.doFilter(request, response);
 	}
 
